@@ -14,6 +14,8 @@
     </head>
     <body>
         <spring:message code="elo"/>
+        <a href="/listazadan"> lista zadan </a>
+
         <h1>Hello World!</h1>
     </body>
 </html>
