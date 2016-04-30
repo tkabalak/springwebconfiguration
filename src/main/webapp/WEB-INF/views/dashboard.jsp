@@ -7,11 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Zadania</title>
-</head>
-<body>
+
     <c:import url="/WEB-INF/views/navbar.jsp" />
     <c:forEach items="${zadania}" var="zadanie">
         <tr>
@@ -19,5 +15,6 @@
             <td>${zadanie.description}</td>
         </tr>
     </c:forEach>
-</body>
-</html>
+
+
+<c:import url="/WEB-INF/views/footer.jsp" />

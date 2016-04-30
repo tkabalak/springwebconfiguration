@@ -28,5 +28,5 @@
         <form:button value="submit" >Dodaj</form:button>
 
     </form:form>
-</body>
-</html>
+
+<c:import url="/WEB-INF/views/footer.jsp" />

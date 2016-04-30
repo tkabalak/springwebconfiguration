@@ -47,17 +47,6 @@ public class HelloController {
 
         return "dashboard";
     }
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String getLoginPage(Model model){
-        return "login";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(Model model){
-        return "login";
-    }
-
-
 
     public class Zadanie {
         private String name;

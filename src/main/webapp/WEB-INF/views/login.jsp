@@ -11,12 +11,24 @@
 <c:import url="/WEB-INF/views/header.jsp" />
 
     <div id="login content">
-        <fs:form action="${loginView}"  modelAttribute="user" method="post">
-            UserName: <fs:input path="username" type="text"/>
+        <fs:form action="${loginView}"  modelAttribute="user" method="post" cssClass="form-signin">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label for="inputEmail" class="sr-only">Username</label>
+            UserName: <fs:input id="inputEmail" path="username" type="text" cssClass="form-control" />
             <fs:errors path="username" />
-            Password: <fs:password path="password"  />
+
+            <label for="inputPassword" class="sr-only">Password</label>
+            Password: <fs:input id="inputPassword" path="password" type="text" cssClass="form-control"/>
+            <fs:errors path="password" />
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </fs:form>
     </div>
 
-</body>
-</html>
+
+<c:import url="/WEB-INF/views/footer.jsp" />

@@ -14,8 +14,14 @@
     <title>Task Details</title>
     <script src="<c:url value="/files/angular/angular.js" />" ></script>
     <s:url value="/files/bootstrap/css/bootstrap.css" var="bootstrapUrl" />
-    <link href='${bootstrapUrl}' rel="stylesheet"/>
+    <s:url value="/files/styles/signin.css" var="signInUrl" />
+    <%--<link href='${bootstrapUrl}' rel="stylesheet"/>--%>
+    <link href='http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css' rel="stylesheet"/>
+    <link href='${signInUrl}' rel="stylesheet"/>
+
+
 </head>
 <body>
+<div class="container">
 
 <c:import url="/WEB-INF/views/navbar.jsp" />
