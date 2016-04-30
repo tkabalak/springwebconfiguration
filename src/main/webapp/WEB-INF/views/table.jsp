@@ -13,6 +13,7 @@
     <link type="text/css" rel="stylesheet" href="C:\Users\Wiesiek\Desktop\WEB\files\bootstrap\css\bootstrap.css">
 </head>
 <body>
+    <c:import url="/WEB-INF/views/navbar.jsp" />
     <table class="table">
         <thead>
         <tr>

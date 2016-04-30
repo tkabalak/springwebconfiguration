@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <c:import url="/WEB-INF/views/navbar.jsp" />
         <spring:message code="elo"/>
         <a href="/listazadan"> lista zadan </a>
 

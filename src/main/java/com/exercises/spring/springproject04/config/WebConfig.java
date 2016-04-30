@@ -1,18 +1,14 @@
 package com.exercises.spring.springproject04.config;
 
-import java.util.Locale;
-
-import com.mongodb.Mongo;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.data.mongodb.core.MongoFactoryBean;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -22,10 +18,13 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import javax.persistence.EntityManagerFactory;
+import java.util.Locale;
+
 
 @Configuration
 @EnableWebMvc
-@EnableMongoRepositories(basePackages = "com.exercises.spring.springproject04.domain")
+@EnableTransactionManagement
 @ComponentScan(basePackages = "com.exercises.spring.springproject04")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
@@ -54,18 +53,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         resolver.setCookieMaxAge(4800);
         return resolver;
     }
-    // TODO: fix error of creating bean mongoTemplate
+
     @Bean
-    public MongoFactoryBean mongo(){
-        MongoFactoryBean mongo = new MongoFactoryBean();
-        mongo.setHost("localhost");
-        mongo.setPort(27017);
-        return mongo;
+    public LocalEntityManagerFactoryBean entityManagerFactoryBean(){
+        LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
+        factoryBean.setPersistenceUnitName("TASK_PU");
+        return factoryBean;
     }
 
     @Bean
-    public MongoOperations mongoTemplate(Mongo mongo){
-        return new MongoTemplate(mongo, "TasksDB");
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
     }
 
     @Override
