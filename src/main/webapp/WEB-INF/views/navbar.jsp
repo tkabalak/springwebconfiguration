@@ -9,18 +9,41 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html>
+
     <c:set var="userId" value="1" />
 
     <s:url var="taskList" value="/task/list/${userId}" />
     <s:url var="home" value="/" />
     <s:url var="listaZadan" value="/listazadan" />
     <s:url var="addTask" value="/task/add" />
+    <s:url var="taskDetail" value="/task/" />
+    <s:url var="loginView" value="/login/" />
 
-    <a href="${home}">Home</a>
-    <a href="${taskList}">Tasks</a>
-    <a href="${listaZadan}">Lista Zadan</a>
-    <a href="${addTask}">Dodaj zadanie</a>
+<nav class="navbar navbar-light bg-faded">
+    <a class="navbar-brand" href="${home}">Task Manager</a>
+    <ul class="nav navbar-nav" >
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="${taskList}">Task List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="${listaZadan}">Lista Zadan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="${addTask}">Add Task</a>
+        </li>
+    </ul>
+    <form class="form-inline pull-xs-right">
+        <input class="form-control" type="text" placeholder="Search">
+        <button class="btn btn-success-outline" type="submit">Search</button>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+        <%--<li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>--%>
+        <li><a href="${loginView}">Logowanie</a></li>
+    </ul>
+</nav>
 
-    <br />
-</html>
+
+

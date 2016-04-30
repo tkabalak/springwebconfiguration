@@ -6,21 +6,27 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "task", schema = "public", catalog = "task_manager")
 public class TaskEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_task")
     private Long idTask;
     private String title;
     private String description;
+    @Column(name = "added_date",insertable = false)
     private Timestamp addedDate;
     private Timestamp updated;
     private Timestamp deadline;
-    private Long active;
+    @Column(name = "active",insertable = false)
+    private Long active ;
+    @Column(name = "submited",insertable = false)
     private Short submited;
+    @Column(name = "status",insertable = false)
     private Short status;
+    @Column(name = "owner_id")
     private Long ownerId;
+    @Column(name = "manager_id")
     private Long managerId;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id_task")
     public Long getIdTask() {
         return idTask;
     }
@@ -29,8 +35,6 @@ public class TaskEntity {
         this.idTask = idTask;
     }
 
-    @Basic
-    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -39,8 +43,6 @@ public class TaskEntity {
         this.title = title;
     }
 
-    @Basic
-    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -49,8 +51,6 @@ public class TaskEntity {
         this.description = description;
     }
 
-    @Basic
-    @Column(name = "added_date")
     public Timestamp getAddedDate() {
         return addedDate;
     }
@@ -59,8 +59,6 @@ public class TaskEntity {
         this.addedDate = addedDate;
     }
 
-    @Basic
-    @Column(name = "updated")
     public Timestamp getUpdated() {
         return updated;
     }
@@ -69,8 +67,6 @@ public class TaskEntity {
         this.updated = updated;
     }
 
-    @Basic
-    @Column(name = "deadline")
     public Timestamp getDeadline() {
         return deadline;
     }
@@ -79,8 +75,6 @@ public class TaskEntity {
         this.deadline = deadline;
     }
 
-    @Basic
-    @Column(name = "active")
     public Long getActive() {
         return active;
     }
@@ -89,8 +83,6 @@ public class TaskEntity {
         this.active = active;
     }
 
-    @Basic
-    @Column(name = "submited")
     public Short getSubmited() {
         return submited;
     }
@@ -99,8 +91,6 @@ public class TaskEntity {
         this.submited = submited;
     }
 
-    @Basic
-    @Column(name = "status")
     public Short getStatus() {
         return status;
     }
@@ -109,8 +99,6 @@ public class TaskEntity {
         this.status = status;
     }
 
-    @Basic
-    @Column(name = "owner_id")
     public Long getOwnerId() {
         return ownerId;
     }
@@ -119,8 +107,6 @@ public class TaskEntity {
         this.ownerId = ownerId;
     }
 
-    @Basic
-    @Column(name = "manager_id")
     public Long getManagerId() {
         return managerId;
     }
