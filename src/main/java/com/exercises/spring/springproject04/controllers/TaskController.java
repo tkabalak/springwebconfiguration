@@ -1,6 +1,8 @@
 package com.exercises.spring.springproject04.controllers;
 
+import com.exercises.spring.springproject04.entities.EmployeeEntity;
 import com.exercises.spring.springproject04.entities.TaskEntity;
+import com.exercises.spring.springproject04.services.EmployeeServiceDao;
 import com.exercises.spring.springproject04.services.LoggerService;
 import com.exercises.spring.springproject04.services.TaskServiceImpl;
 import org.slf4j.event.Level;
@@ -23,6 +25,9 @@ public class TaskController {
     private TaskServiceImpl taskService;
 
     @Autowired
+    private EmployeeServiceDao employeeService;
+
+    @Autowired
     private LoggerService logger;
 
     @RequestMapping(value = "/list/{userId}", method = RequestMethod.GET)
@@ -38,6 +43,8 @@ public class TaskController {
         Optional<TaskEntity> task = taskService.findTask(taskId);
         if (task.isPresent()){
             mOdel.addAttribute("zadanie", task.get());
+            EmployeeEntity manager = employeeService.findEmployeeById(task.get().getManagerId());
+            mOdel.addAttribute("manager", manager);
             return "task/details";
         } else {
             return "redirect:/";

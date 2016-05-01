@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -27,6 +28,7 @@ import java.util.Locale;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan(basePackages = "com.exercises.spring.springproject04")
+@EnableJpaRepositories(basePackages = "com.exercises.spring.springproject04", entityManagerFactoryRef = "entityManagerFactoryBean")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
@@ -78,6 +80,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/files/**").addResourceLocations("/files/");
     }
-
 
 }

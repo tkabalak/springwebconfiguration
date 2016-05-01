@@ -19,6 +19,9 @@
     <s:url var="addTask" value="/task/add" />
     <s:url var="taskDetail" value="/task/" />
     <s:url var="loginView" value="/login/" />
+    <s:url var="loginView" value="/login/" />
+    <s:url var="employeeView" value="/employee/list" />
+    <s:url var="profileView" value="/profile/" scope="application" />
 <%--<link href='http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css' rel="stylesheet"/>--%>
 
 <nav class="navbar navbar-dark bg-inverse" style="margin-bottom: 30px">
@@ -31,11 +34,14 @@
         <li class="nav-item">
             <a class="nav-link" href="${taskList}"><spring:message code="navbar_task_list"/></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="${listaZadan}"><spring:message code="navbar_all_task_assigned"/></a>
-        </li>
+        <%--<li class="nav-item">--%>
+            <%--<a class="nav-link" href="${listaZadan}"><spring:message code="navbar_all_task_assigned"/></a>--%>
+        <%--</li>--%>
         <li class="nav-item">
             <a class="nav-link" href="${addTask}"><spring:message code="navbar_add_task"/></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="${employeeView}"><spring:message code="navbar_employees_list"/></a>
         </li>
     </ul>
     <ul class="nav navbar-nav pull-xs-right">

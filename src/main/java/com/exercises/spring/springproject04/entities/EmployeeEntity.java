@@ -150,6 +150,11 @@ public class EmployeeEntity {
         this.active = active;
     }
 
+    @Transient
+    public String getFullName(){
+        return name + " " + surname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
