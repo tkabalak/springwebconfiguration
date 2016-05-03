@@ -1,9 +1,11 @@
 package com.exercises.spring.springproject04.config;
 
+import com.exercises.spring.springproject04.interceptors.GlobalHandler;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -29,6 +31,7 @@ import java.util.Locale;
 @EnableTransactionManagement
 @ComponentScan(basePackages = "com.exercises.spring.springproject04")
 @EnableJpaRepositories(basePackages = "com.exercises.spring.springproject04", entityManagerFactoryRef = "entityManagerFactoryBean")
+//@Import(WebMvcConfigurerAdapter.class)
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
@@ -74,6 +77,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
         interceptor.setParamName("mylocale");
         registry.addInterceptor(interceptor);
+
+        GlobalHandler globalHandler = new GlobalHandler();
+        registry.addInterceptor(globalHandler);
     }
 
     @Override

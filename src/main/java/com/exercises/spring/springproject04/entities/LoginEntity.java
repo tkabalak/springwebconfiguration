@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "login", schema = "public", catalog = "task_manager")
-public class LoginEntity {
+public class LoginEntity implements java.io.Serializable{
     private Long idLogin;
     private String username;
     private String password;
@@ -151,5 +151,20 @@ public class LoginEntity {
         result = 31 * result + (appRole != null ? appRole.hashCode() : 0);
         result = 31 * result + (employeeId != null ? employeeId.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "LoginEntity{" +
+                "employeeId=" + employeeId +
+                ", idLogin=" + idLogin +
+                ", username='" + username + '\'' +
+                ", salt='" + salt + '\'' +
+                ", added=" + added +
+                ", lastUpdated=" + lastUpdated +
+                ", activeUser=" + activeUser +
+                ", deleted=" + deleted +
+                ", appRole=" + appRole +
+                '}';
     }
 }

@@ -12,7 +12,7 @@
 <c:import url="/WEB-INF/views/header.jsp" />
 
     <div id="login content">
-        <fs:form action="${loginView}"  modelAttribute="user" method="post" cssClass="form-signin">
+        <fs:form action="${loginView}"  modelAttribute="user" method="POST" cssClass="form-signin">
             <h2 class="form-signin-heading"><spring:message code="login_please_sign_in"/></h2>
             <label for="inputEmail" class="sr-only"><spring:message code="navbar_home"/></label>
                 <spring:message code="login_username"/>
@@ -26,12 +26,22 @@
 
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="remember-me"> <spring:message code="login_remember_me"/>
+                    <input id="remember_me" name="remember-me" type="checkbox" value="remember-me">
+                    <spring:message code="login_remember_me"/>
                 </label>
             </div>
+
             <button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="login_sign_in"/></button>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
         </fs:form>
     </div>
+
+    <%--<form action="/logout" method="post">--%>
+        <%--<input type="submit" class="button red big" value="Sign in as different user" /> <input--%>
+            <%--type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
+    <%--</form>--%>
 
 
 <c:import url="/WEB-INF/views/footer.jsp" />

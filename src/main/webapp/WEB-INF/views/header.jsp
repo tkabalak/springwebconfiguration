@@ -11,6 +11,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <title>Task Details</title>
     <script src="<c:url value="/files/angular/angular.js" />" ></script>
     <s:url value="/files/bootstrap/css/bootstrap.css" var="bootstrapUrl" />

@@ -41,6 +41,8 @@ public class TaskServiceImpl {
         return Optional.ofNullable(resultList.get(0));
     }
 
+
+
 //    public List<TaskEntity> findAllTaskGivenByManager(Long managerId){
 //        TypedQuery<TaskEntity> query = em.createQuery("SELECT t FROM TaskEntity t " +
 //                "WHERE t.active = :active and t.managerId = :managerId", TaskEntity.class);

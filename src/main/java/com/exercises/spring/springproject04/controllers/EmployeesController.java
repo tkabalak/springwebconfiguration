@@ -17,10 +17,17 @@ public class EmployeesController {
     @Autowired
     private EmployeeServiceDao employeeService;
 
+//    @RequestMapping("/spring-web/{symbolicName:[a-z-]+}-{version:\\d\\.\\d\\.\\d}{extension:\\.[a-z]+}")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String getAllUser( Model model) {
         List<EmployeeEntity> employees = employeeService.findAllEmployees();
         model.addAttribute("employees", employees);
         return "employee/employeeList";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String getAddEmplFrom(Model model) {
+        model.addAttribute("employee", new EmployeeEntity());
+        return "addEmployee";
     }
 }

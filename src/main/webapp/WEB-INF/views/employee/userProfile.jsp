@@ -47,4 +47,7 @@
     </tbody>
 </table>
 
+
+
+
 <c:import url="/WEB-INF/views/footer.jsp" />

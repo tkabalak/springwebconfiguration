@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LoggerService {
-    private final Logger logger = LoggerFactory.getLogger("ELO");
+    private final Logger logger = LoggerFactory.getLogger("");
 
     public void log(String log, Level level){
         if (level == Level.DEBUG){

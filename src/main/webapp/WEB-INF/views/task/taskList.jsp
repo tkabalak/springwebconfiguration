@@ -22,10 +22,10 @@
     </tr>
     </thead>
     <tbody>
-        <c:forEach items="${zadania}" var="zadanie">
+        <c:forEach items="${zadania}" var="zadanie" varStatus="i">
             <tr>
                 <th scope="row">
-                    <a href="/task/${zadanie.idTask}">${zadanie.idTask}</a>
+                    <a href="/task/${zadanie.idTask}">${i.index + 1}</a>
                 </th>
                 <td>
                     <a href="/task/${zadanie.idTask}">${zadanie.title}</a>
