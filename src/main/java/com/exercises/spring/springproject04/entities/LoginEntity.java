@@ -1,34 +1,82 @@
 package com.exercises.spring.springproject04.entities;
 
+
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Table(name = "login", schema = "public", catalog = "task_manager")
 public class LoginEntity implements java.io.Serializable{
-    private Long idLogin;
-    private String username;
-    private String password;
-    private String salt;
-    private Timestamp added;
-    private Timestamp lastUpdated;
-    private Long activeUser;
-    private Long deleted;
-    private Long appRole;
-    private Long employeeId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_login")
-    public Long getIdLogin() {
-        return idLogin;
+    private Integer idLogin;
+
+    @Basic(optional = false)
+//    @NotNull
+//    @Size(min = 1, max = 50)
+    @Column(name = "username")
+    private String username;
+
+    @Basic(optional = false)
+//    @NotNull
+//    @Size(min = 1, max = 50)
+    @Column(name = "password")
+    private String password;
+
+//    @Size(max = 200)
+    @Column(name = "salt")
+    private String salt;
+
+    @Column(name = "added")
+//    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp added;
+
+    @Column(name = "last_updated")
+//    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp lastUpdated;
+
+    @Column(name = "active_user")
+    private Integer activeUser;
+
+    @Column(name = "deleted")
+    private Integer deleted;
+
+    @Column(name = "app_role")
+    @Type(type = "com.exercises.spring.springproject04.dto.AppRoleArrayType")
+    private Integer[] appRole;
+//    @ElementCollection(fetch = FetchType.LAZY)
+//    private Set<Integer> appRole;
+
+    @JoinColumn(name = "employee_id", referencedColumnName = "id_employee")
+    @ManyToOne(optional = false)
+    private EmployeeEntity employeeId;
+
+    public LoginEntity() {
     }
 
-    public void setIdLogin(Long idLogin) {
+    public LoginEntity(Integer idLogin) {
         this.idLogin = idLogin;
     }
 
-    @Basic
-    @Column(name = "username")
+    public LoginEntity(Integer idLogin, String username, String password) {
+        this.idLogin = idLogin;
+        this.username = username;
+        this.password = password;
+    }
+
+    public Integer getIdLogin() {
+        return idLogin;
+    }
+
+    public void setIdLogin(Integer idLogin) {
+        this.idLogin = idLogin;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -37,8 +85,6 @@ public class LoginEntity implements java.io.Serializable{
         this.username = username;
     }
 
-    @Basic
-    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -47,8 +93,6 @@ public class LoginEntity implements java.io.Serializable{
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "salt")
     public String getSalt() {
         return salt;
     }
@@ -57,8 +101,6 @@ public class LoginEntity implements java.io.Serializable{
         this.salt = salt;
     }
 
-    @Basic
-    @Column(name = "added")
     public Timestamp getAdded() {
         return added;
     }
@@ -67,8 +109,6 @@ public class LoginEntity implements java.io.Serializable{
         this.added = added;
     }
 
-    @Basic
-    @Column(name = "last_updated")
     public Timestamp getLastUpdated() {
         return lastUpdated;
     }
@@ -77,80 +117,65 @@ public class LoginEntity implements java.io.Serializable{
         this.lastUpdated = lastUpdated;
     }
 
-    @Basic
-    @Column(name = "active_user")
-    public Long getActiveUser() {
+    public Integer getActiveUser() {
         return activeUser;
     }
 
-    public void setActiveUser(Long activeUser) {
+    public void setActiveUser(Integer activeUser) {
         this.activeUser = activeUser;
     }
 
-    @Basic
-    @Column(name = "deleted")
-    public Long getDeleted() {
+    public Integer getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(Long deleted) {
+    public void setDeleted(Integer deleted) {
         this.deleted = deleted;
     }
 
-    @Basic
-    @Column(name = "app_role")
-    public Long getAppRole() {
+//    public Set<Integer> getAppRole() {
+//        return appRole;
+//    }
+
+//    public void setAppRole(Set<Integer> appRole) {
+//        this.appRole = appRole;
+//    }
+
+
+    public Integer[] getAppRole() {
         return appRole;
     }
 
-    public void setAppRole(Long appRole) {
+    public void setAppRole(Integer[] appRole) {
         this.appRole = appRole;
     }
 
-    @Basic
-    @Column(name = "employee_id")
-    public Long getEmployeeId() {
+    public EmployeeEntity getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(Long employeeId) {
+    public void setEmployeeId(EmployeeEntity employeeId) {
         this.employeeId = employeeId;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        LoginEntity that = (LoginEntity) o;
-
-        if (idLogin != null ? !idLogin.equals(that.idLogin) : that.idLogin != null) return false;
-        if (username != null ? !username.equals(that.username) : that.username != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (salt != null ? !salt.equals(that.salt) : that.salt != null) return false;
-        if (added != null ? !added.equals(that.added) : that.added != null) return false;
-        if (lastUpdated != null ? !lastUpdated.equals(that.lastUpdated) : that.lastUpdated != null) return false;
-        if (activeUser != null ? !activeUser.equals(that.activeUser) : that.activeUser != null) return false;
-        if (deleted != null ? !deleted.equals(that.deleted) : that.deleted != null) return false;
-        if (appRole != null ? !appRole.equals(that.appRole) : that.appRole != null) return false;
-        if (employeeId != null ? !employeeId.equals(that.employeeId) : that.employeeId != null) return false;
-
-        return true;
+    public int hashCode() {
+        int hash = 0;
+        hash += (idLogin != null ? idLogin.hashCode() : 0);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        int result = idLogin != null ? idLogin.hashCode() : 0;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (salt != null ? salt.hashCode() : 0);
-        result = 31 * result + (added != null ? added.hashCode() : 0);
-        result = 31 * result + (lastUpdated != null ? lastUpdated.hashCode() : 0);
-        result = 31 * result + (activeUser != null ? activeUser.hashCode() : 0);
-        result = 31 * result + (deleted != null ? deleted.hashCode() : 0);
-        result = 31 * result + (appRole != null ? appRole.hashCode() : 0);
-        result = 31 * result + (employeeId != null ? employeeId.hashCode() : 0);
-        return result;
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof LoginEntity)) {
+            return false;
+        }
+        LoginEntity other = (LoginEntity) object;
+        if ((this.idLogin == null && other.idLogin != null) || (this.idLogin != null && !this.idLogin.equals(other.idLogin))) {
+            return false;
+        }
+        return true;
     }
 
     @Override

@@ -1,11 +1,15 @@
 package com.exercises.spring.springproject04.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "task", schema = "public", catalog = "task_manager")
-public class TaskEntity {
+public class TaskEntity implements java.io.Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_task")
@@ -15,7 +19,10 @@ public class TaskEntity {
     @Column(name = "added_date",insertable = false)
     private Timestamp addedDate;
     private Timestamp updated;
-    private Timestamp deadline;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date  deadline;
+
     @Column(name = "active",insertable = false)
     private Long active ;
     @Column(name = "submited",insertable = false)
@@ -24,8 +31,15 @@ public class TaskEntity {
     private Short status;
     @Column(name = "owner_id")
     private Long ownerId;
-    @Column(name = "manager_id")
-    private Long managerId;
+
+    @JoinColumn(name = "manager_id", referencedColumnName = "id_employee")
+    @ManyToOne
+    private EmployeeEntity managerId;
+
+
+    @JoinColumn(name = "id_task", referencedColumnName = "id_task")
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<ProgressEntity> progress;
 
     public Long getIdTask() {
         return idTask;
@@ -67,11 +81,11 @@ public class TaskEntity {
         this.updated = updated;
     }
 
-    public Timestamp getDeadline() {
+    public Date getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Timestamp deadline) {
+    public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
 
@@ -107,11 +121,19 @@ public class TaskEntity {
         this.ownerId = ownerId;
     }
 
-    public Long getManagerId() {
+    public EmployeeEntity getManagerId() {
         return managerId;
     }
 
-    public void setManagerId(Long managerId) {
+    public List<ProgressEntity> getProgress() {
+        return progress;
+    }
+
+    public void setProgress(List<ProgressEntity> progress) {
+        this.progress = progress;
+    }
+
+    public void setManagerId(EmployeeEntity managerId) {
         this.managerId = managerId;
     }
 

@@ -10,9 +10,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:import url="/WEB-INF/views/header.jsp" />
-
+<div class="container">
+<div class="">
  <table class="table" style="margin-top: 30px;">
-    <thead class="thead-inverse">
+    <thead class="thead-inverse" style="overflow: auto;">
     <tr>
         <th>#</th>
         <th><spring:message code="task_name"/></th>
@@ -43,5 +44,5 @@
         </c:forEach>
     </tbody>
 </table>
-
+</div>
 <c:import url="/WEB-INF/views/footer.jsp" />

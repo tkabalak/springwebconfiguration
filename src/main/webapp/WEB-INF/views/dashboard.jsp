@@ -9,12 +9,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
     <c:import url="/WEB-INF/views/navbar.jsp" />
+
+<div class="container">
     <c:forEach items="${zadania}" var="zadanie">
         <tr>
             <td>${zadanie.title}</td>
             <td>${zadanie.description}</td>
         </tr>
     </c:forEach>
-
+</div>
 
 <c:import url="/WEB-INF/views/footer.jsp" />

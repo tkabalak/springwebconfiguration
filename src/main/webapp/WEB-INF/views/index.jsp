@@ -7,9 +7,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <c:import url="/WEB-INF/views/header.jsp" />
+        <div class="container">
+                <a href="/listazadan"> lista zadan </a>
 
-        <a href="/listazadan"> lista zadan </a>
-
-        <h1>Hello World!</h1>
-
+                <h1>Hello World!</h1>
+        <div>
 <c:import url="/WEB-INF/views/footer.jsp" />

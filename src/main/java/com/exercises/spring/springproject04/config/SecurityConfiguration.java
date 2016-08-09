@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled=true)
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @ComponentScan(basePackageClasses = CustomUserDetailsService.class)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -30,8 +30,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.userDetailsService(userDetailsService)
                 .authorizeRequests()
-                    .antMatchers("/hello").access("hasRole('ROLE_ADMIN')")
-                    .antMatchers("/task/**").access("hasRole('ROLE_ADMIN')")
+                    .antMatchers("/hello").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+                    .antMatchers("/task/add").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+                    .antMatchers("/task/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+                    .antMatchers("/employee/**").access("hasRole('ROLE_ADMIN')")
                     .anyRequest().permitAll()
                 .and().formLogin()
                     .loginPage("/login")
@@ -45,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/logout")
                     .permitAll()
                 .and().exceptionHandling()
-                    .accessDeniedPage("/Access_Denied")
+                    .accessDeniedPage("/error")
                 .and().rememberMe().tokenValiditySeconds(60 * 60)
                 ;
 

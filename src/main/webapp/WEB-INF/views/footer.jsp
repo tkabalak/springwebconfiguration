@@ -6,6 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-    </div>
+
+    <div style="clear: both; height: 60px;"></div>
+    <footer class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p class="text-muted">Task And Employee Management System &copy Tomasz Kabalak.</p>
+        </div>
+    </footer>
 </body>
 </html>

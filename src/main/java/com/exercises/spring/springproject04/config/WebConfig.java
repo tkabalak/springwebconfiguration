@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -23,6 +26,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import javax.persistence.EntityManagerFactory;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -72,6 +76,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return new JpaTransactionManager(entityManagerFactory);
     }
 
+    @Bean
+    public Long getLong(){
+        return Long.MAX_VALUE;
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
@@ -87,4 +96,21 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/files/**").addResourceLocations("/files/");
     }
 
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        converters.add(new MarshallingHttpMessageConverter());
+//        converters.add(new MappingJackson2HttpMessageConverter());
+//
+//        super.configureMessageConverters(converters);
+//    }
+//    private HttpMessageConverter<Object> createXmlHttpMessageConverter() {
+//        MarshallingHttpMessageConverter xmlConverter =
+//                ;
+//
+//        XStreamMarshaller xstreamMarshaller = new XStreamMarshaller();
+//        xmlConverter.setMarshaller(xstreamMarshaller);
+//        xmlConverter.setUnmarshaller(xstreamMarshaller);
+//
+//        return xmlConverter;
+//    }
 }

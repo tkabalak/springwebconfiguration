@@ -10,7 +10,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <c:import url="/WEB-INF/views/header.jsp" />
-
+<div class="container">
     <div id="login content">
         <fs:form action="${loginView}"  modelAttribute="user" method="POST" cssClass="form-signin">
             <h2 class="form-signin-heading"><spring:message code="login_please_sign_in"/></h2>
@@ -42,6 +42,6 @@
         <%--<input type="submit" class="button red big" value="Sign in as different user" /> <input--%>
             <%--type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
     <%--</form>--%>
-
+</div>
 
 <c:import url="/WEB-INF/views/footer.jsp" />

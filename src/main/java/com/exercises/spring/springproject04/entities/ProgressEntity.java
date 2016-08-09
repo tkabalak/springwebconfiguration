@@ -1,20 +1,37 @@
 package com.exercises.spring.springproject04.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "progress", schema = "public", catalog = "task_manager")
 public class ProgressEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_progress")
     private Long idProgress;
+
+    @Column(name = "id_task")
     private Long idTask;
-    private Timestamp addedDate;
+
+    @Column(name = "added_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date addedDate;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "spend_hours")
     private Long spendHours;
+
+    @Column(name = "performed")
     private Long performed;
 
-    @Id
-    @Column(name = "id_progress")
+
     public Long getIdProgress() {
         return idProgress;
     }
@@ -23,8 +40,7 @@ public class ProgressEntity {
         this.idProgress = idProgress;
     }
 
-    @Basic
-    @Column(name = "id_task")
+
     public Long getIdTask() {
         return idTask;
     }
@@ -33,18 +49,16 @@ public class ProgressEntity {
         this.idTask = idTask;
     }
 
-    @Basic
-    @Column(name = "added_date")
-    public Timestamp getAddedDate() {
+
+    public Date getAddedDate() {
         return addedDate;
     }
 
-    public void setAddedDate(Timestamp addedDate) {
+    public void setAddedDate(Date addedDate) {
         this.addedDate = addedDate;
     }
 
-    @Basic
-    @Column(name = "description")
+
     public String getDescription() {
         return description;
     }
@@ -53,8 +67,7 @@ public class ProgressEntity {
         this.description = description;
     }
 
-    @Basic
-    @Column(name = "spend_hours")
+
     public Long getSpendHours() {
         return spendHours;
     }
@@ -63,8 +76,7 @@ public class ProgressEntity {
         this.spendHours = spendHours;
     }
 
-    @Basic
-    @Column(name = "performed")
+
     public Long getPerformed() {
         return performed;
     }

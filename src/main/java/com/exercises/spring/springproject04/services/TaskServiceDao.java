@@ -16,4 +16,9 @@ public interface TaskServiceDao extends JpaRepository<TaskEntity, Long> {
     @Query("update TaskEntity t set t.status = :status where t.idTask = :taskId")
     void updateStatus(@Param("taskId") Long taskId, @Param("status") short status);
 
+//    @Modifying
+//    @Transactional
+//    @Query("update TaskEntity t set t.status = :status where t.idTask = :taskId")
+//    void markTaskDone(@Param("taskId") Long taskId, @Param("status") short status);
+
 }
